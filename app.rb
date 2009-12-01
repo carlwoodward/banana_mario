@@ -108,13 +108,6 @@ class Banana
     end
   end
   
-  # YVel = -10; //Initial jump speed.
-  # do
-  # {
-  # YPos += YVel; //Move the character
-  # YVel = YVel * .9 + 1; //This will be explained later
-  # if(YVel > 10) YVel = 10; //Make sure we have a terminal velocity so the character doesn't fall too fast
-  # } while(!OnGround())
   def velocity
     changes :from => [:jumping_up], :to => :jumping_down if jumping_up? and @y_pos < max_jump_height
     change_to_on_ground_if_finished_jumping
@@ -128,10 +121,7 @@ class Banana
   end
   
   def jump_position
-    velocity = self.velocity
     @y_pos += velocity
-    velocity = velocity * 0.9 + 1
-    velocity = 10 if velocity > 10
     @y_pos
   end
   
